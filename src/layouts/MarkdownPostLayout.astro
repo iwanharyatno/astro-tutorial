@@ -8,5 +8,30 @@ const { frontmatter } = Astro.props
   <p>Written by: {frontmatter.author}</p>
   <p>Published on: {frontmatter.pubDate.slice(0,10)}</p>
   <img src={frontmatter.image.url} alt={frontmatter.image.alt} width="300" />
+  <div class="tags">
+    {frontmatter.tags.map(t => (
+      <p class="tag"><a href={`/tags/${t}`}>{t}</a></p>
+    ))}
+  </div>
   <slot />
 </BaseLayout>
+
+<style>
+  a {
+    color: #00539F;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    margin: 0.25em;
+    border: dotted 1px #a1a1a1;
+    border-radius: .5em;
+    padding: .5em 1em;
+    font-size: smaller;
+    background-color: #F8FCFD;
+  }
+</style>
